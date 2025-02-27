@@ -2,7 +2,7 @@ import Swiper from "@/components/swiper/swiper";
 
 const database = [
     {
-        username: "anays.leiva",
+        username: "pato",
         password: "123"
     },
     {
@@ -10,9 +10,6 @@ const database = [
         password: "123"
     },
 ]
-
-
-import { useSwiper } from 'swiper/react';
 
 export default async function Page({ params }: { params: Promise<{ username: string }> }) {
     const username = (await params).username
