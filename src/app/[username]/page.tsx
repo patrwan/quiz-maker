@@ -1,3 +1,4 @@
+import Quiz from "@/components/quiz/Quiz";
 import Swiper from "@/components/swiper/swiper";
 
 const database = [
@@ -25,7 +26,7 @@ export default async function Page({ params }: { params: Promise<{ username: str
         <div className="grid justify-center place-content-center h-screen w-screen bg-zinc-200">
             <h1 className="text-2xl m-8 text-center">Quiz de: {username}</h1>
             <div>
-                <Swiper/>
+               <Quiz/>
             </div>
 
         </div>

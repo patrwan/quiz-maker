@@ -10,7 +10,7 @@ import { EffectCards } from 'swiper/modules';
 
 import './styles.css';
 
-import ButtonSwiper from '@/components/buttonSwiper/ButtonSwiper';
+import NextButtonSwiper from '@/components/nextButtonSwiper/NextButtonSwiper';
 import BackButtonSwiper from '@/components/backButtonSwiper/BackButtonSwiper';
 import { useState } from 'react';
 
@@ -234,7 +234,7 @@ export default () => {
                     ) : (
                         <div className='flex justify-between space-x-4'>
                             <BackButtonSwiper />
-                            <ButtonSwiper />
+                            <NextButtonSwiper />
                         </div>
                     )}
 
