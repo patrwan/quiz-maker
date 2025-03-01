@@ -1,5 +1,7 @@
 import Quiz from "@/components/quiz/Quiz";
-import Swiper from "@/components/swiper/swiper";
+
+import Layout from "@/components/layout/layout";
+
 
 const database = [
     {
@@ -13,7 +15,7 @@ const database = [
 ]
 
 export default async function Page({ params }: { params: Promise<{ username: string }> }) {
-    const username = (await params).username
+    const username = (await params).username;
 
     const userExist = database.find(user => user.username.localeCompare(username) === 0);
 
@@ -23,12 +25,12 @@ export default async function Page({ params }: { params: Promise<{ username: str
 
 
     return (
-        <div className="grid justify-center place-content-center h-screen w-screen bg-zinc-200">
-            <h1 className="text-2xl m-8 text-center">Quiz de: {username}</h1>
-            <div>
-               <Quiz/>
+        <Layout>
+            <div className="grid justify-center place-content-center h-full">
+                <div className="">
+                    <Quiz />
+                </div>
             </div>
-
-        </div>
+        </Layout>
     )
 }

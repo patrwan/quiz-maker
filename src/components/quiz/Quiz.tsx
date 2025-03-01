@@ -16,6 +16,27 @@ interface QuizState {
 
 interface QuizProps { }
 
+/** 
+{
+    id : 1
+    author : patrwan
+    questionnaire_name : ¿Cuanto sabes sobre mi?
+    questions: [
+        {
+            id: 1,
+            question: "Pregunta 1",
+            answerList: [
+                { id: 1, answer: "Respuesta 1", isCorrect: true },
+                { id: 2, answer: "Respuesta 2", isCorrect: false },
+                { id: 3, answer: "Respuesta 3", isCorrect: false },
+                { id: 4, answer: "Respuesta 4", isCorrect: false }
+            ]
+        },
+    ]
+}
+
+**/
+
 const questionList: QuestionType[] = [
     {
         id: 1,
@@ -128,7 +149,12 @@ export default ({ }: QuizProps) => {
     };
 
     return (
-        <div>
+        <div className='p-10 shadow-md shadow-gray-500'>
+            <div className='p-6'>
+                <p className='text-4xl text-center font-extrabold'>¿Cuanto sabes sobre mi?</p>
+                <p className='text-gray-600'>Autor: <span className='font-bold'>patrwan</span></p>
+            </div>
+
             {quizState.verify ? (
                 <QuizResults results={quizState.results} resetQuiz={resetQuiz} />
             ) : (
@@ -139,12 +165,15 @@ export default ({ }: QuizProps) => {
                         swiperRef={swiperRef}
                     />
                     {quizState.allAnswered ? (
-                        <button
-                            className="p-2 bg-green-600 text-white font-bold rounded-md mt-4 w-48"
-                            onClick={verifyAnswers}
-                        >
-                            Verificar
-                        </button>
+                        <div className="flex justify-center space-x-4">
+                            <button
+                                className="p-2 bg-green-600 text-white font-bold rounded-md mt-4 w-48"
+                                onClick={verifyAnswers}
+                            >
+                                Verificar
+                            </button>
+                        </div>
+
                     ) : (
                         <div className="flex justify-between space-x-4">
                             <BackButtonSwiper onClick={handlePrevSlide} />
