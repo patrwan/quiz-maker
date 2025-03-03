@@ -3,16 +3,14 @@ import { Bricolage_Grotesque } from 'next/font/google'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react';
 
+import { useAuth } from "@/context/AuthContext";
+
 const bricolage = Bricolage_Grotesque({ subsets: ['latin'] })
 
-const users = [
-  {
-    username: "patrwan",
-    password: "123456"
-  }
-]
-
 export default function Home() {
+
+  const { login } = useAuth();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -22,7 +20,6 @@ export default function Home() {
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
-    console.log(value)
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -31,7 +28,7 @@ export default function Home() {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    router.push('u/'+formData.username);
+    login(formData);
   };
 
   return (

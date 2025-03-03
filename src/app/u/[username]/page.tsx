@@ -1,34 +1,10 @@
-import Quiz from "@/components/quiz/Quiz";
 
-import Layout from "@/components/layout/layout";
-
-
-const database = [
-    {
-        username: "pato",
-        password: "123"
-    },
-    {
-        username: "fjdkfjksd",
-        password: "123"
-    },
-]
-
-export default async function Page({ params }: { params: Promise<{ username: string }> }) {
-    const username = (await params).username;
-
-    const userExist = database.find(user => user.username.localeCompare(username) === 0);
-
-    if (!userExist) {
-        return <><p>User not found</p></>;
-    }
-
-
+export default function page() {
     return (
-        <Layout>
-            <div className="grid justify-center place-content-center h-full bg-gray-600">
-                <Quiz />
+        <div className="grid place-content-center h-screen">
+            <div className="bg-yellow-300 h-96 w-96 grid place-content-center">
+                <h1 className="font-bold text-3xl">Pagina en construcción</h1>
             </div>
-        </Layout>
+        </div>
     )
 }
