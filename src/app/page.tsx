@@ -31,7 +31,7 @@ export default function Home() {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    router.push('/'+formData.username);
+    router.push('u/'+formData.username);
   };
 
   return (

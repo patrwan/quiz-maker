@@ -26,10 +26,8 @@ export default async function Page({ params }: { params: Promise<{ username: str
 
     return (
         <Layout>
-            <div className="grid justify-center place-content-center h-full">
-                <div className="">
-                    <Quiz />
-                </div>
+            <div className="grid justify-center place-content-center h-full bg-gray-600">
+                <Quiz />
             </div>
         </Layout>
     )
