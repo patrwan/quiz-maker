@@ -14,72 +14,11 @@ interface QuizState {
     verify: boolean;
 }
 
-interface QuizProps { }
-
-/** 
-{
-    id : 1
-    author : patrwan
-    questionnaire_name : ¿Cuanto sabes sobre mi?
-    questions: [
-        {
-            id: 1,
-            question: "Pregunta 1",
-            answerList: [
-                { id: 1, answer: "Respuesta 1", isCorrect: true },
-                { id: 2, answer: "Respuesta 2", isCorrect: false },
-                { id: 3, answer: "Respuesta 3", isCorrect: false },
-                { id: 4, answer: "Respuesta 4", isCorrect: false }
-            ]
-        },
-    ]
+interface QuizProps { 
+    questionList :  QuestionType[]
 }
-**/
 
-const questionList: QuestionType[] = [
-    {
-        id: 1,
-        question: "Pregunta 1",
-        answerList: [
-            { id: 1, answer: "Respuesta 1", isCorrect: true },
-            { id: 2, answer: "Respuesta 2", isCorrect: false },
-            { id: 3, answer: "Respuesta 3", isCorrect: false },
-            { id: 4, answer: "Respuesta 4", isCorrect: false }
-        ]
-    },
-    {
-        id: 2,
-        question: "Pregunta 2",
-        answerList: [
-            { id: 1, answer: "Respuesta 1", isCorrect: false },
-            { id: 2, answer: "Respuesta 2", isCorrect: true },
-            { id: 3, answer: "Respuesta 3", isCorrect: false },
-            { id: 4, answer: "Respuesta 4", isCorrect: false }
-        ]
-    },
-    {
-        id: 3,
-        question: "Pregunta 3",
-        answerList: [
-            { id: 1, answer: "Respuesta 1", isCorrect: false },
-            { id: 2, answer: "Respuesta 2", isCorrect: true },
-            { id: 3, answer: "Respuesta 3", isCorrect: false },
-            { id: 4, answer: "Respuesta 4", isCorrect: false }
-        ]
-    },
-    {
-        id: 4,
-        question: "Pregunta 4",
-        answerList: [
-            { id: 1, answer: "Respuesta 1", isCorrect: false },
-            { id: 2, answer: "Respuesta 2", isCorrect: true },
-            { id: 3, answer: "Respuesta 3", isCorrect: false },
-            { id: 4, answer: "Respuesta 4", isCorrect: false }
-        ]
-    }
-];
-
-export default ({ }: QuizProps) => {
+export default ({ questionList }: QuizProps) => {
     const [quizState, setQuizState] = useState<QuizState>({
         selectedAnswers: {},
         results: {},
@@ -148,7 +87,7 @@ export default ({ }: QuizProps) => {
     };
 
     return (
-        <div className='p-10 shadow-md shadow-gray-500 w-96 bg-yellow-700'>
+        <div className='p-10 shadow-md shadow-gray-500 w-full md:w-1/2 h-full '>
             <div className='p-6'>
                 <p className='text-4xl text-center font-extrabold'>¿Pregunta 1?</p>
                 <p className='text-gray-600'>Autor: <span className='font-bold'>patrwan</span></p>
@@ -174,7 +113,7 @@ export default ({ }: QuizProps) => {
                         </div>
 
                     ) : (
-                        <div className="flex justify-between space-x-4">
+                        <div className="flex w-full justify-center space-x-4">
                             <BackButtonSwiper onClick={handlePrevSlide} />
                             <NextButtonSwiper onClick={handleNextSlide} />
                         </div>

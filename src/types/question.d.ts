@@ -13,3 +13,11 @@ export interface Question {
 export interface QuizResults {
     [questionId: number]: boolean;
 }
+
+export interface QuestionList {
+    id: number;
+    name: string;
+    questions: Question[];
+    privacity: boolean,
+    date:string
+}
