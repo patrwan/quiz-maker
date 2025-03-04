@@ -1,4 +1,6 @@
+'use client'
 import Link from "next/link";
+import { useEffect } from "react";
 
 const data = [
   {
@@ -18,6 +20,11 @@ const data = [
 ];
 
 export default function QuizzesList() {
+
+  useEffect(()=>{
+    
+  },[])
+
   return (
     <div className="flex flex-col space-y-5">
       {data.map(quiz => {

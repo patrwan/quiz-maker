@@ -1,53 +1,19 @@
 'use client'
-import { createContext, useContext, useState } from "react";
-import { useRouter } from "next/navigation";
+import { createContext, useContext, useEffect, useState } from "react";
+import { auth } from "@/firebase/config";
+import { onAuthStateChanged, User } from "firebase/auth";
 
-import database from "@/db/db.json";
+const AuthContext = createContext<{ user: User | null }>({ user: null });
 
-type UserCredential = {
-    username: string;
-    password: string;
-} | null;
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
 
-type AuthContextType = {
-    user: UserCredential;
-    login: (userData: UserCredential) => void;
-    logout: () => void;
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => setUser(user));
+    return () => unsubscribe();
+  }, []);
+
+  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };
 
-const AuthContext= createContext<AuthContextType | undefined>(undefined);
-
-export const AuthProvider  = ({ children }: any) => {
-    const [user, setUser] = useState<UserCredential>(null);
-
-    const router = useRouter();
-
-    const login = (userData: UserCredential) => {
-        const user = database.find(u => u.username === userData?.username && u.password === userData.password);
-        
-        if (user) {
-            setUser(userData);
-            router.push(`/u/${user.username}/quizzes`);
-        }
-        alert('Usuario o contraseña incorrectos')
-
-    };
-
-    const logout = () => {
-        setUser(null);
-    };
-
-    return (
-        <AuthContext.Provider value={{ user, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
-
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error("useUser debe usarse dentro de UserProvider");
-    }
-    return context;
-};
+export const useAuth = () => useContext(AuthContext);

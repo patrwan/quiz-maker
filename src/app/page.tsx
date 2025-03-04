@@ -3,20 +3,21 @@ import { Bricolage_Grotesque } from 'next/font/google'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react';
 
-import { useAuth } from "@/context/AuthContext";
+import { loginUser } from '@/firebase/auth';
+
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const bricolage = Bricolage_Grotesque({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const { login } = useAuth();
 
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
 
-  const router = useRouter(); 
+  const router = useRouter();
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -26,9 +27,31 @@ export default function Home() {
     }));
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-    login(formData);
+    // login
+    try {
+      const credentials = await loginUser(formData.username, formData.password);
+      const user = credentials.user;
+
+      const db = getFirestore();
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        console.log("Usuario autenticado:", userData.username);
+        router.push(`/u/${userData.username}/quizzes`)
+      } else {
+        console.log("No se encontró el documento de usuario");
+      }
+
+      
+
+    } catch (error) {
+     console.log(error)
+    }
+
   };
 
   return (
