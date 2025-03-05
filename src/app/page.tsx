@@ -7,13 +7,15 @@ import { loginUser } from '@/firebase/auth';
 
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
+import toast, { Toaster } from 'react-hot-toast';
+
 const bricolage = Bricolage_Grotesque({ subsets: ['latin'] })
 
 export default function Home() {
 
 
   const [formData, setFormData] = useState({
-    username: '',
+    username: 'patrwan@quiz.com',
     password: '',
   });
 
@@ -29,27 +31,42 @@ export default function Home() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    // login
     try {
-      const credentials = await loginUser(formData.username, formData.password);
-      const user = credentials.user;
+      toast.promise(
+        async () => {
+          const credentials = await loginUser(formData.username, formData.password);
+          const user = credentials.user;
+          
+          const db = getFirestore();
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
 
-      const db = getFirestore();
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            const userData = docSnap.data();
+            console.log("Usuario autenticado:", userData.username);
+            setTimeout(() => router.push(`/u/${userData.username}/quizzes`), 1000);
+            
+    
+          } else {
+            console.log("No se encontró el documento de usuario");
+            toast('Here is your toast.');
+          }
 
-      if (docSnap.exists()) {
-        const userData = docSnap.data();
-        console.log("Usuario autenticado:", userData.username);
-        router.push(`/u/${userData.username}/quizzes`)
-      } else {
-        console.log("No se encontró el documento de usuario");
-      }
+        },
+        {
+          loading: 'Iniciando Sesión',
+          success: 'Inicio de sesión exitoso',
+          error: 'Usuario o contraseña incorrectos',
+        }
+      );
+
+      
 
 
 
     } catch (error) {
       console.log(error)
+      //toast('Here is your toast.');
     }
 
   };
@@ -57,6 +74,9 @@ export default function Home() {
   return (
     <div className={bricolage.className}>
       <div className="grid grid-cols-3 grid-rows-5 gap-4 p-10 bg-teal-200 h-screen ">
+        <Toaster toastOptions={{
+          duration : 4000
+        }}/>
         <div className="h-full row-span-6 bg-[url(/think.jpg)] bg-center bg-cover rounded-xl shadow-md shadow-gray-400 bg-black"></div>
         <div className="flex justify-center items-center row-span-6 bg-[url(/think2.jpg)] bg-center bg-cover h-full rounded-xl shadow-md shadow-gray-400 bg-opacity-40">
           <form onSubmit={handleSubmit} className='flex flex-col h-96 space-y-3  p-4 justify-center bg-black bg-opacity-60 rounded-xl'>
