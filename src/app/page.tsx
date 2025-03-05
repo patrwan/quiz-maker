@@ -46,22 +46,23 @@ export default function Home() {
         console.log("No se encontró el documento de usuario");
       }
 
-      
+
 
     } catch (error) {
-     console.log(error)
+      console.log(error)
     }
 
   };
 
   return (
     <div className={bricolage.className}>
-      <div className="grid bg-green-200 items-center justify-items-center min-h-screen w-screen justify-center font-bold text-xl">
-        <main className="flex flex-col gap-8  bg-white p-10 h-2/3 w-full shadow-md shadow-gray-600  justify-center rounded-3xl">
-          <h1 className="text-4xl font-extrabold text-center text-emerald-600">Quiz Maker🥺</h1>
-          <form onSubmit={handleSubmit} className='flex flex-col space-y-3 '>
+      <div className="grid grid-cols-3 grid-rows-5 gap-4 p-10 bg-teal-200 h-screen ">
+        <div className="h-full row-span-6 bg-[url(/think.jpg)] bg-center bg-cover rounded-xl shadow-md shadow-gray-400 bg-black"></div>
+        <div className="flex justify-center items-center row-span-6 bg-[url(/think2.jpg)] bg-center bg-cover h-full rounded-xl shadow-md shadow-gray-400 bg-opacity-40">
+          <form onSubmit={handleSubmit} className='flex flex-col h-96 space-y-3  p-4 justify-center bg-black bg-opacity-60 rounded-xl'>
+            <h1 className="text-4xl font-extrabold text-center text-white ">Quiz Maker🥺</h1>
             <input
-              className='w-96 p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md'
+              className='w-96 p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md '
               type="text"
               name="username"
               id="username"
@@ -78,12 +79,44 @@ export default function Home() {
               value={formData.password}
               onChange={handleChange}
             />
-            <button className="bg-emerald-400 hover:bg-emerald-300  transition-all p-2 rounded-md text-white" type='submit'>Entrar</button>
+            <button className="bg-emerald-600 hover:bg-emerald-500  transition-all p-2 rounded-md text-white font-bold" type='submit'>Entrar</button>
           </form>
-
-        </main>
+        </div>
+        <div className="row-span-6 bg-[url(/searching.jpg)] bg-center bg-cover h-full rounded-xl shadow-md shadow-gray-400"></div>
       </div>
     </div>
 
   );
 }
+
+
+/*
+
+<main className="flex flex-col gap-8  bg-white p-10 h-full w-full shadow-md shadow-gray-600  justify-end rounded-3xl bg-[url(/think.jpg)] bg-center bg-cover ">
+
+<div className="row-span-4 col-start-2">
+  <form onSubmit={handleSubmit} className='flex flex-col space-y-3 bg-white p-4'>
+    <h1 className="text-4xl font-extrabold text-center text-emerald-600 ">Quiz Maker🥺</h1>
+    <input
+      className='w-96 p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md'
+      type="text"
+      name="username"
+      id="username"
+      placeholder='Ingrese usuario'
+      value={formData.username}
+      onChange={handleChange}
+    />
+    <input
+      className='p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md'
+      type="password"
+      name="password"
+      id="password"
+      placeholder='******'
+      value={formData.password}
+      onChange={handleChange}
+    />
+    <button className="bg-emerald-800 hover:bg-emerald-300  transition-all p-2 rounded-md text-white" type='submit'>Entrar</button>
+  </form>
+</div>
+</main>
+*/
