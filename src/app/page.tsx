@@ -56,12 +56,12 @@ export default function Home() {
 
   return (
     <div className={bricolage.className}>
-      <div className="grid bg-lime-600  grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] absolute inset-0  justify-center  text-white font-bold text-4xl">
-        <main className="flex flex-col gap-8 row-start-2 items-center">
-          <h1 className="text-9xl font-extrabold text-center">Quiz Maker🥺</h1>
-          <form onSubmit={handleSubmit} className='flex flex-col space-y-6'>
+      <div className="grid bg-green-200 items-center justify-items-center min-h-screen w-screen justify-center font-bold text-xl">
+        <main className="flex flex-col gap-8  bg-white p-10 h-2/3 w-full shadow-md shadow-gray-600  justify-center rounded-3xl">
+          <h1 className="text-4xl font-extrabold text-center text-emerald-600">Quiz Maker🥺</h1>
+          <form onSubmit={handleSubmit} className='flex flex-col space-y-3 '>
             <input
-              className='p-2 text-black outline-none focus:border-blue-400 border-2'
+              className='w-96 p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md'
               type="text"
               name="username"
               id="username"
@@ -70,7 +70,7 @@ export default function Home() {
               onChange={handleChange}
             />
             <input
-              className='p-2 text-black outline-none focus:border-blue-400 border-2'
+              className='p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md'
               type="password"
               name="password"
               id="password"
@@ -78,7 +78,7 @@ export default function Home() {
               value={formData.password}
               onChange={handleChange}
             />
-            <button className="bg-pink-600 hover:bg-pink-500  transition-all p-4 rounded-md text-white" type='submit'>Entrar</button>
+            <button className="bg-emerald-400 hover:bg-emerald-300  transition-all p-2 rounded-md text-white" type='submit'>Entrar</button>
           </form>
 
         </main>
