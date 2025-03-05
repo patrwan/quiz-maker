@@ -9,6 +9,7 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from 'react';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
+import { logoutUser } from "@/firebase/auth";
 
 export default function Layout({ children }: any) {
     const [username, setUsername] = useState("");
@@ -44,6 +45,7 @@ export default function Layout({ children }: any) {
                     {user ? <nav className='flex space-x-4 text-lg'>
                         <Link href={`/u/${username}/quizzes`}>Mis cuestionarios</Link>
                         <Link href={`/u/${username}/create-quiz`}>Crear cuestionario</Link>
+                        <button className='hover:text-gray-300' onClick={logoutUser}>Cerrar Sesión</button>
                     </nav> : ""}
 
                 </header>
