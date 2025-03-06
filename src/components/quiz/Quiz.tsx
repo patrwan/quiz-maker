@@ -89,7 +89,7 @@ export default ({ questionList }: QuizProps) => {
     return (
         <div className='p-10 shadow-md shadow-gray-500 w-full md:w-1/2 h-full '>
             <div className='p-6'>
-                <p className='text-4xl text-center font-extrabold'>¿Pregunta 1?</p>
+                <p className='text-4xl text-center font-extrabold'></p>
                 <p className='text-gray-600'>Autor: <span className='font-bold'>patrwan</span></p>
             </div>
 

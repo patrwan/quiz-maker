@@ -11,7 +11,7 @@ interface QuestionProps {
 const Question = ({ question, handleAnswerChange } : QuestionProps) => {
     return (
         <div key={question.id}>
-            <p className="text-center">{question.question}</p>
+            <p className="text-center">¿{question.question}?</p>
             <div className="flex flex-col space-y-6 mt-8 p-2">
                 {question.answerList.map(answer => (
                     <Answer
