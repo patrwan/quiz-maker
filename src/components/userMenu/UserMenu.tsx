@@ -2,7 +2,14 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { logoutUser } from "@/firebase/auth";
 import Link from 'next/link';
 import React from 'react';
+import { deleteCookie } from "cookies-next";
+
 const UserMenu = ({ username }: { username: string }) => {
+    const handleLogOut = async () => {
+        await logoutUser();
+        deleteCookie("token");
+    }
+    
     return (
         <Menu>
             <MenuButton>Mi Cuenta</MenuButton>
@@ -18,7 +25,7 @@ const UserMenu = ({ username }: { username: string }) => {
                     </Link>
                 </MenuItem>
                 <MenuItem>
-                    <button className="block data-[focus]:bg-emerald-400 p-2" onClick={logoutUser}>
+                    <button className="block data-[focus]:bg-emerald-400 p-2" onClick={handleLogOut}>
                         Cerrar Sesión
                     </button>
                 </MenuItem>

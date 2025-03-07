@@ -8,6 +8,7 @@ import { loginUser } from '@/firebase/auth';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 import toast, { Toaster } from 'react-hot-toast';
+import { setCookie } from 'cookies-next';
 
 const bricolage = Bricolage_Grotesque({ subsets: ['latin'] })
 
@@ -44,6 +45,9 @@ export default function Home() {
           if (docSnap.exists()) {
             const userData = docSnap.data();
             console.log("Usuario autenticado:", userData.username);
+            const token = await user.getIdToken(); // Obtener el token de Firebase
+
+            setCookie("token", token, { maxAge: 60 * 60 * 24 });
             setTimeout(() => router.push(`/account/quizzes`), 1000);
             
     
