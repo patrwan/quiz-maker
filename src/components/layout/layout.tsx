@@ -45,7 +45,10 @@ export default function Layout({ children }: any) {
                     <p className="font-bold text-xl">Quiz Maker</p>
                     {user ? <nav className='flex space-x-4 text-lg'>
                         <UserMenu username={username} />
-                    </nav> : "cargando"}
+                    </nav> : <div className='flex space-x-4'>
+                        <Link className='bg-indigo-900 h-full p-2 font-bold flex items-center rounded-sm hover:bg-indigo-400' href="/">Iniciar Sesión</Link>
+                        <Link className='bg-indigo-900 h-full p-2 font-bold flex items-center rounded-sm' href="/#">Registrate</Link>
+                    </div>}
 
                 </header>
                 <main className="flex-1">
