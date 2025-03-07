@@ -18,7 +18,9 @@ export default function Layout({ children }: any) {
     const { user } = useAuth();
 
     useEffect(() => {
+        console.log(user)
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            console.log(user)
             if (user) {
                 // Obtener el nombre de usuario desde Firestore
                 const db = getFirestore();
@@ -43,12 +45,22 @@ export default function Layout({ children }: any) {
             <div className="h-screen flex flex-col container m-auto bg-white">
                 <header className="bg-indigo-600 flex justify-between px-10 items-center  h-16 p-2 text-white">
                     <p className="font-bold text-xl">Quiz Maker</p>
-                    {user ? <nav className='flex space-x-4 text-lg'>
-                        <UserMenu username={username} />
-                    </nav> : <div className='flex space-x-4'>
-                        <Link className='bg-indigo-900 h-full p-2 font-bold flex items-center rounded-sm hover:bg-indigo-400' href="/">Iniciar Sesión</Link>
-                        <Link className='bg-indigo-900 h-full p-2 font-bold flex items-center rounded-sm' href="/#">Registrate</Link>
-                    </div>}
+                    {user === null ? (
+                        <div className="animate-pulse w-32 h-full bg-indigo-700 rounded"></div>
+                    ) : user ? (
+                        <nav className="flex space-x-4 text-lg">
+                            <UserMenu username={username} />
+                        </nav>
+                    ) : (
+                        <div className="flex space-x-4">
+                            <Link className="bg-indigo-900 h-full p-2 font-bold flex items-center rounded-sm hover:bg-indigo-400" href="/">
+                                Iniciar Sesión
+                            </Link>
+                            <Link className="bg-indigo-900 h-full p-2 font-bold flex items-center rounded-sm" href="/#">
+                                Registrate
+                            </Link>
+                        </div>
+                    )}
 
                 </header>
                 <main className="flex-1">
