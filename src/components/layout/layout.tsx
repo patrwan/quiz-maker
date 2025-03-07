@@ -41,7 +41,7 @@ export default function Layout({ children }: any) {
     return (
         <div className={bricolage.className}>
             <div className="h-screen flex flex-col container m-auto bg-white">
-                <header className="bg-indigo-600 flex justify-between px-10 items-center  h-12 p-2 text-white">
+                <header className="bg-indigo-600 flex justify-between px-10 items-center  h-16 p-2 text-white">
                     <p className="font-bold text-xl">Quiz Maker</p>
                     {user ? <nav className='flex space-x-4 text-lg'>
                         <UserMenu username={username} />
