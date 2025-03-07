@@ -9,7 +9,7 @@ export default function page() {
 
     const params = useParams();
 
-    const username = params?.username;
+    const username = Array.isArray(params?.username) ? params.username[0] : params?.username || '';
     const quizId = params?.quiz;
 
     useEffect(() => {

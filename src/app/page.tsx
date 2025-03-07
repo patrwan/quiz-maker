@@ -44,7 +44,7 @@ export default function Home() {
           if (docSnap.exists()) {
             const userData = docSnap.data();
             console.log("Usuario autenticado:", userData.username);
-            setTimeout(() => router.push(`/u/${userData.username}/quizzes`), 1000);
+            setTimeout(() => router.push(`/account/quizzes`), 1000);
             
     
           } else {

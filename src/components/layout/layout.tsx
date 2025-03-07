@@ -9,7 +9,8 @@ import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from 'react';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import { logoutUser } from "@/firebase/auth";
+
+import UserMenu from '../userMenu/UserMenu';
 
 export default function Layout({ children }: any) {
     const [username, setUsername] = useState("");
@@ -26,7 +27,7 @@ export default function Layout({ children }: any) {
 
                 if (docSnap.exists()) {
                     const userData = docSnap.data();
-                    setUsername(userData.username); // Guardamos el nombre de usuario
+                    setUsername(userData.username ?? ""); // Guardamos el nombre de usuario
                 }
             } else {
                 //router.push("/login"); // Redirigir si no hay sesión activa
@@ -40,13 +41,11 @@ export default function Layout({ children }: any) {
     return (
         <div className={bricolage.className}>
             <div className="h-screen flex flex-col container m-auto bg-white">
-                <header className="bg-emerald-600 flex justify-between px-10 items-center  h-12 p-2 text-white">
+                <header className="bg-indigo-600 flex justify-between px-10 items-center  h-12 p-2 text-white">
                     <p className="font-bold text-xl">Quiz Maker</p>
                     {user ? <nav className='flex space-x-4 text-lg'>
-                        <Link href={`/u/${username}/quizzes`}>Mis cuestionarios</Link>
-                        <Link href={`/u/${username}/create-quiz`}>Crear cuestionario</Link>
-                        <button className='hover:text-gray-300' onClick={logoutUser}>Cerrar Sesión</button>
-                    </nav> : ""}
+                        <UserMenu username={username} />
+                    </nav> : "cargando"}
 
                 </header>
                 <main className="flex-1">
@@ -54,6 +53,11 @@ export default function Layout({ children }: any) {
                 </main>
                 <footer className="bg-zinc-900 text-green-400 h-16 grid place-content-center">©2025</footer>
             </div>
-        </div>
+        </div >
     )
 }
+/**
+<Link href={`/u/${username}/quizzes`}>Mis cuestionarios</Link>
+                        <Link href={`/u/${username}/create-quiz`}>Crear cuestionario</Link>
+                        <button className='hover:text-gray-300' onClick={logoutUser}>Cerrar Sesión</button>
+ */
