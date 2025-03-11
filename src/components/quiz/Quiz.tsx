@@ -72,17 +72,17 @@ export default ({ questionList }: QuizProps) => {
         }));
     };
 
-    const swiperRef = useRef<any>(null);  // Referencia al Swiper.
+    const swiperRef = useRef<any>(null);
 
     const handleNextSlide = () => {
         if (swiperRef.current) {
-            swiperRef.current.swiper.slideNext();  // Avanzar a la siguiente diapositiva.
+            swiperRef.current.swiper.slideNext();
         }
     };
 
     const handlePrevSlide = () => {
         if (swiperRef.current) {
-            swiperRef.current.swiper.slidePrev();  // Retroceder a la diapositiva anterior.
+            swiperRef.current.swiper.slidePrev();
         }
     };
 
@@ -90,7 +90,7 @@ export default ({ questionList }: QuizProps) => {
         <div className='p-10 shadow-md shadow-gray-500 w-full md:w-1/2 h-full '>
             <div className='p-6'>
                 <p className='text-4xl text-center font-extrabold'></p>
-                <p className='text-gray-600'>Autor: <span className='font-bold'>patrwan</span></p>
+                <p className='text-gray-600'>Autor: <span className='font-bold'>1</span></p>
             </div>
 
             {quizState.verify ? (

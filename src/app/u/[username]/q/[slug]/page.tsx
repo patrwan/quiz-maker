@@ -24,32 +24,32 @@ const data: QuestionListType[] = [
       },
       {
         id: 2,
-        question: "Pregunta 2",
+        question: "Comida Favorita",
         answerList: [
-          { id: 1, answer: "Respuesta 1", isCorrect: false },
-          { id: 2, answer: "Respuesta 2", isCorrect: true },
-          { id: 3, answer: "Respuesta 3", isCorrect: false },
-          { id: 4, answer: "Respuesta 4", isCorrect: false }
+          { id: 1, answer: "Pizza", isCorrect: true },
+          { id: 2, answer: "Completos", isCorrect: false },
+          { id: 3, answer: "Empanadas", isCorrect: false },
+          { id: 4, answer: "Sushi", isCorrect: false }
         ]
       },
       {
         id: 3,
-        question: "Pregunta 3",
+        question: "Banda Favorita",
         answerList: [
-          { id: 1, answer: "Respuesta 1", isCorrect: false },
-          { id: 2, answer: "Respuesta 2", isCorrect: true },
-          { id: 3, answer: "Respuesta 3", isCorrect: false },
-          { id: 4, answer: "Respuesta 4", isCorrect: false }
+          { id: 1, answer: "Artic Monkeys", isCorrect: false },
+          { id: 2, answer: "Twice", isCorrect: false },
+          { id: 3, answer: "Tweny One Pilots", isCorrect: true },
+          { id: 4, answer: "Red Hot Chilli Peppers", isCorrect: false }
         ]
       },
       {
         id: 4,
-        question: "Pregunta 4",
+        question: "Anime Favorito",
         answerList: [
-          { id: 1, answer: "Respuesta 1", isCorrect: false },
-          { id: 2, answer: "Respuesta 2", isCorrect: true },
-          { id: 3, answer: "Respuesta 3", isCorrect: false },
-          { id: 4, answer: "Respuesta 4", isCorrect: false }
+          { id: 1, answer: "Kimetsu no Yaiba", isCorrect: false },
+          { id: 2, answer: "One Piece", isCorrect: true },
+          { id: 3, answer: "Jujutsu Kaisen", isCorrect: false },
+          { id: 4, answer: "Boku no hero academia", isCorrect: false }
         ]
       }
     ],
@@ -90,9 +90,9 @@ export default function Page() {
 
   return (
     <Layout>
-      <div className="p-10 flex flex-col justify-center items-center space-y-8 h-full">
+      <div className="p-10 flex flex-col justify-center items-center  h-full">
         <h1 className="text-4xl font-bold">{quizName}</h1>
-        {username}
+        {/*username*/}
         <Quiz questionList={questions} />
       </div>
     </Layout>

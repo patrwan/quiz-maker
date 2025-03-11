@@ -83,10 +83,10 @@ export default function Home() {
         }}/>
         <div className="h-full row-span-6 bg-[url(/think.jpg)] bg-center bg-cover rounded-xl shadow-md shadow-gray-400 bg-black"></div>
         <div className="flex justify-center items-center row-span-6 bg-[url(/think2.jpg)] bg-center bg-cover h-full rounded-xl shadow-md shadow-gray-400 bg-opacity-40">
-          <form onSubmit={handleSubmit} className='flex flex-col h-96 space-y-3  p-4 justify-center bg-black bg-opacity-60 rounded-xl'>
+          <form onSubmit={handleSubmit} className='flex flex-col h-96 space-y-3  p-4 justify-center bg-black/80 rounded-xl'>
             <h1 className="text-4xl font-extrabold text-center text-white ">Quiz Maker🥺</h1>
             <input
-              className='w-96 p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md '
+              className='w-96 p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md bg-white'
               type="text"
               name="username"
               id="username"
@@ -95,7 +95,7 @@ export default function Home() {
               onChange={handleChange}
             />
             <input
-              className='p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md'
+              className='p-2 text-black outline-none focus:border-blue-400 border-2 rounded-md bg-white'
               type="password"
               name="password"
               id="password"
